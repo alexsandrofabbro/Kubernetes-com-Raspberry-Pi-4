@@ -11,6 +11,6 @@ e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento.<br>
 <br>
 <br>
 
-Chega de conversa e vamos colocar a mão na massa :) :) :)
+Chega de conversa e vamos colocar a mão na massa. :) :) :)
 
 
