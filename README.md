@@ -17,5 +17,20 @@ Link para baixar o Ubuntu Server para Raspberry Pi:<br>
 https://ubuntu.com/download/raspberry-pi<br>
 <br>
 <br>
+Após instalação do Ubuntu Server no cartão de memória, vocês podem estar configurando o IP fixo do Raspberry Pi no<br> 
+arquivo "network-config" como exemplo abaixo:<br>
+network:
+  version: 2
+
+  ethernets:
+    eth0:
+      addresses: [192.168.0.201/24]
+      gateway4: 192.168.0.1
+      dhcp4: false
+      optional: true
+      nameservers:
+           addresses: [192.168.0.1, 0.0.0.0]<br>
+<br>
+<br>
 
 
