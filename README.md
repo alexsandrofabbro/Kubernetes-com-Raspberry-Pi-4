@@ -36,5 +36,5 @@ network:<br>
 Para conectar a esse Raspberry Pi pela rede vou utilizar a conexão por ssh. É bom verificar se está<br>
 habilitado a conexão por <b>password</b> e se a <b>porta 22</b> está ativada.<br>
 <br>
-Iremos acessar o arquivo chamado <b>ssh_config</b>. Ele está localizada na pasta <b>/etc/ssh>/b>
+Iremos acessar o arquivo chamado <b>ssh_config</b>. Ele está localizada na pasta <b>/etc/ssh</b>
 
