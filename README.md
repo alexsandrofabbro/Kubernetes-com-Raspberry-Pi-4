@@ -11,6 +11,16 @@ e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento.<br>
 <br>
 <br>
 
-Chega de conversa e vamos colocar a mão na massa. :) :) :)
+Chega de conversa e vamos colocar a mão na massa. :) :) :)<br>
+<br>
+Utilizarei para isso 3 Raspberry Pi 4 em cluster e kubernetes.<br>
+<br>
+Irei utilizar o Linux como sistema operacional (Ubuntu Server 24.04).<br>
+<br>
+<br>
+Link para baixar o Ubuntu Server para Raspberry Pi:<br>
+https://ubuntu.com/download/raspberry-pi<br>
+<br>
+<br>
 
 
