@@ -50,12 +50,23 @@ Digite o seguinte comando para ir como <b>Root</b> -> <b>sudo su</b> e depois a 
 <br>
 <br>
 Configurando os hostname dos clusters com o seguinte comando:<br>
-hostname cluster01<br>
+<b>hostname cluster01</b><br>
 <br>
 Para salvar o nome no arquivo host teremos que executar o comando abaixo:<br>
-echo "cluster01" > /etc/hostname<br>
+<b>echo "cluster01" > /etc/hostname</b><br>
 <br>
+Se você quiser confirmar se foi alterado o nome, execute esse comando -> <b>cat /etc/hostname</b><br>
 <br>
+Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte comando com o nano como<br> 
+exemplo abaixo:<br>
+nano /etc/hosts<br>
+<br>
+127.0.0.1      localhost<br>
+192.168.0.201  cluster01<br>  
+::1 localhost<br>
+127.0.1.1      pop-os.localdomain pop-os<br>
+<br>
+
 
 
 
