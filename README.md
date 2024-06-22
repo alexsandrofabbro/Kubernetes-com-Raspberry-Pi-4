@@ -13,7 +13,6 @@ Chega de conversa e vamos colocar a mão na massa. :) :) :)<br>
 <br>
 Utilizarei 3 Raspberry Pi com Linux Server (Ubuntu Server 24.04), kubernetes em cluster.<br>
 <br>
-<br>
 Link para baixar o Ubuntu Server para Raspberry Pi:<br>
 https://ubuntu.com/download/raspberry-pi<br>
 <br>
