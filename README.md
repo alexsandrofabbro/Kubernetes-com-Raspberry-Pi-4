@@ -41,4 +41,21 @@ Iremos acessar o arquivo chamado <b>ssh_config</b>. Ele está localizada na past
 Após essa configuração, podem inserir o cartão de memória no Raspberry Pi e conectar pelo terminal utilizando o comando ssh.<br>
 <br>
 <br>
+<h2>Configurando os Raspberry Pi.</h2><br>
+
+<b>Obs:</b> Esses passos têm que ser realizados em todos os Raspberry Pi que irão fazer parte do seu Cluster.<br>
+<br>
+Iremos realizar os comandos pelo terminal e com o usuário <b>Root.</b><br> 
+Digite o seguinte comando para ir como <b>Root</b> -> <b>sudo su</b> e depois a senha do root.>br>
+<br>
+<br>
+Configurando os hostname dos clusters com o seguinte comando:<br>
+hostname cluster01<br>
+<br>
+Para salvar o nome no arquivo host teremos que executar o comando abaixo:<br>
+echo "cluster01" > /etc/hostname<br>
+<br>
+<br>
+
+
 
