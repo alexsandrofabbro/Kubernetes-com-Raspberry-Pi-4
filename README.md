@@ -66,7 +66,37 @@ nano /etc/hosts<br>
 ::1 localhost<br>
 127.0.1.1      pop-os.localdomain pop-os<br>
 <br>
+<b>Obs.</b> Se for configurar o Kubernetes em desktops, temos que desabilitar o Swap.<br>
+Como no Raspberry Pi não vem ativado. não iremos executar esse comando.<br>
+<b>swapoff -a</b><br>
+<br>
+Habilitando a memória que por padrão ela vem desabilitada.<br>
+<b>nano /boot/firmware/cmdline.txt</b><br>
+<br>
+No final da linha você irá adicionar o seguinte:<br>
+<b>cgroup_enable=cpuset, cgroup_enable=memory, cgroup_memory=1, swapaccount=1</b><br>
+<br>
+<br>
+Também temos que instalar o Java e o Docker<br>
+<br>
+<br>
+Vamos criar um arquivo .json<br>
 
+Para isso, vamos utilizar o seguinte comando:<br>
+nano /etc/docker/daemon.json<br>
+<br>
+Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
+
+{<br>
+   "exec-opts": ["native.cgroupdriver=systemd"],<br>
+   "log-driver": "json-file",<br>
+   "log-opts": {<br>
+         "max-size": "100m"<br>
+     },<br>
+   "storage-driver": "overlay2"<br>
+}<br>
+<br>
+<br>
 
 
 
