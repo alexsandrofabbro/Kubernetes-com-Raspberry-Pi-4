@@ -5,9 +5,8 @@ Tudo bom pessoal, eu creie esse repositório para auxiliar as pessoas que tem um
 Home Labe ou Servidor de testes.<br>
 
 Sou formado em Técnlogia da Informação e sempre estou estudando o que tem de novidade no mercado, afinal quem escolheu<br> 
-essa profissão de T.I <br>
-sabe que as tecnlogias mudam muito rápido e por isso temos que está atendo as novidades do mercado e com isso sempre estamos estudando<br>
-e aperfeiçoando o nosso conhecimento em T.I.<br>
+essa profissão de T.I sabe que as tecnlogias mudam muito rápido e por isso temos que está atendo as novidades do mercado<br> 
+e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento em T.I.<br>
 <br>
 <br>
 <br>
