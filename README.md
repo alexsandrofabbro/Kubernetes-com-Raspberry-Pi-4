@@ -9,8 +9,6 @@ essa profissão de T.I sabe que as tecnologias mudam muito rápido e por isso te
 e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento.<br>
 <br>
 <br>
-<br>
-
 Chega de conversa e vamos colocar a mão na massa. :) :) :)<br>
 <br>
 Utilizarei para isso 3 Raspberry Pi 4 em cluster e kubernetes.<br>
