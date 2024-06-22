@@ -83,7 +83,7 @@ Também temos que instalar o Java e o Docker<br>
 Vamos criar um arquivo .json<br>
 
 Para isso, vamos utilizar o seguinte comando:<br>
-nano /etc/docker/daemon.json<br>
+<b>nano /etc/docker/daemon.json</b><br>
 <br>
 Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
 
@@ -97,6 +97,12 @@ Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
 }<br>
 <br>
 <br>
+Não podemos esquecer de habilitar uma opção no arquivo <b>sysctl.conf</b>.<br>
+<br>
+Para isso vamos executar o seguinte comando:<br>
+<b>nano /etc/sysctl.conf</b><br>
+<br>
+tem que localizar a linha que está escrito <b>#net.ipv4.ip_forward=1</b> e remover o <b>#</b> 
 
 
 
