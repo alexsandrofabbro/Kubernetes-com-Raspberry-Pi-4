@@ -6,7 +6,7 @@ Home Labe ou Servidor de testes.<br>
 
 Sou formado em Técnlogia da Informação e sempre estou estudando as novidades da nossa area, afinal quem escolheu<br> 
 essa profissão de T.I sabe que as tecnlogias mudam muito rápido e por isso temos que está atendo as novidades do mercado<br> 
-e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento em T.I.<br>
+e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento.<br>
 <br>
 <br>
 <br>
