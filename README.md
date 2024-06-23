@@ -3,8 +3,8 @@
 
 Tudo bom. pessoal. Eu criei esse repositório para auxiliar as pessoas que têm um ou mais Raspberry Pi e querem usar ele como Home Labe ou Servidor de testes.<br>
 
-Sou formado em Tecnologia da Informação e sempre estou estudando as novidades da nossa área, afinal, quem escolheu essa profissão de T.I sabe que as 
-tecnologias mudam muito rápido e por isso temos que estar atentos às novidades do mercado<br> 
+Sou formado em Tecnologia da Informação e sempre estou estudando as novidades da nossa área, afinal, quem escolheu essa<br> 
+profissão de T.I sabe que as tecnologias mudam muito rápido e por isso temos que estar atentos às novidades do mercado<br> 
 e com isso sempre estamos estudando e aperfeiçoando o nosso conhecimento.<br>
 <br>
 <br>
@@ -17,7 +17,7 @@ https://ubuntu.com/download/raspberry-pi<br>
 <br>
 <br>
 Após instalação do Ubuntu Server no cartão de memória, vocês podem estar configurando o IP fixo do Raspberry Pi no<br> 
-arquivo "network-config" como exemplo abaixo:<br>
+arquivo <b>"network-config"</b> como exemplo abaixo:<br>
 
 network:<br>
   version: 2<br>
@@ -60,10 +60,10 @@ Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte
 exemplo abaixo:<br>
 nano /etc/hosts<br>
 <br>
-127.0.0.1      localhost<br>
-192.168.0.201  cluster01<br>  
+127.0.0.1         localhost<br>
+<b>192.168.0.201  cluster01</b><br>  
 ::1 localhost<br>
-127.0.1.1      pop-os.localdomain pop-os<br>
+127.0.1.1         pop-os.localdomain pop-os<br>
 <br>
 <b>Obs.</b> Se for configurar o Kubernetes em desktops, temos que desabilitar o Swap.<br>
 Como no Raspberry Pi não vem ativado. não iremos executar esse comando.<br>
