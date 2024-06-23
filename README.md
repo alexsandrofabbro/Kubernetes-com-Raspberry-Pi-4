@@ -1,8 +1,7 @@
 # Kubernetes com Raspberry-Pi 4
 
 
-Tudo bom. pessoal. Eu criei esse repositório para auxiliar as pessoas que têm um ou mais Raspberry Pi e querem usar ele como<br> 
-Home Labe ou Servidor de testes.<br>
+Tudo bom. pessoal. Eu criei esse repositório para auxiliar as pessoas que têm um ou mais Raspberry Pi e querem usar ele como Home Labe ou Servidor de testes.<br>
 
 Sou formado em Tecnologia da Informação e sempre estou estudando as novidades da nossa área, afinal, quem escolheu<br> 
 essa profissão de T.I sabe que as tecnologias mudam muito rápido e por isso temos que estar atentos às novidades do mercado<br> 
