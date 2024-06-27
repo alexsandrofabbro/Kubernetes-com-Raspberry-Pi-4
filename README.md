@@ -58,7 +58,7 @@ Se você quiser confirmar se foi alterado o nome, execute esse comando -> <b>cat
 <br>
 Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte comando com o nano como<br> 
 exemplo abaixo:<br>
-nano /etc/hosts<br>
+<b>nano /etc/hosts</b><br>
 <br>
 127.0.0.1         localhost<br>
 <b>192.168.0.201  cluster01</b><br>  
