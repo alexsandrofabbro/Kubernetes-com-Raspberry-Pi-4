@@ -31,11 +31,12 @@ network:<br>
       nameservers:<br>
            addresses: [192.168.0.1, 0.0.0.0]<br>
 <br>
-<br>
 Para conectar a esse Raspberry Pi pela rede vou utilizar a conexão por ssh.<br>
-É bom verificar se a conexão por <b>password</b> e se a <b>porta 22</b> está ativada.<br>
 <br>
-Iremos acessar o arquivo chamado <b>ssh_config</b>. Ele está localizada na pasta <b>/etc/ssh</b><br>
+<b>OBS:</b> Lembrando de conferir se a <b>porta 22</b> e a conexão por <b>autenticação</b> esteja liberada.
+Vocês podem está verificando isso em <b>/etc/ssh</b> no arquivo <b>ssh_config</b>
+<br>
+<br>
 <br>
 Após essa configuração, podem inserir o cartão de memória no Raspberry Pi e conectar pelo terminal utilizando o comando ssh.<br>
 <br>
