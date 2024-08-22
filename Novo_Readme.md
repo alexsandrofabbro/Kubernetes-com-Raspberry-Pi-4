@@ -35,9 +35,46 @@
 
 <h2 id="configuração-do-ambiente">Configuração do Ambiente</h2>
 <ol>
+Após instalação do Ubuntu Server no cartão de memória, vocês podem estar configurando o IP fixo do Raspberry Pi no
+arquivo "network-config" como exemplo abaixo:<br>
+<br>
+network:<br>
+  version: 2<br>
+
+  ethernets:<br>
+    eth0:<br>
+      addresses: [192.168.0.201/24]<br>
+      gateway4: 192.168.0.1<br>
+      dhcp4: false<br>
+      optional: true<br>
+      nameservers:<br>
+           addresses: [192.168.0.1, 0.0.0.0]<br>
+<br>
+Para conectar a esse Raspberry Pi pela rede vou utilizar a conexão por <b>ssh</b>.<br>
+<br>
+<b>OBS:</b> Lembrando de conferir se a <b>porta 22</b> e a conexão por <b>autenticação</b> esteja liberada.
+Vocês podem está verificando isso em <b>/etc/ssh</b> no arquivo <b>ssh_config</b>
+<br>
+<br>
+<br>
+Após essa configuração, podem inserir o cartão de memória no Raspberry Pi e conectar pelo terminal utilizando o comando <b>ssh</b>.<br>
+<br>
+<br>
+<h2>Preparação dos Raspberry Pis.</h2>
+<b>Obs:</b> Esses passos têm que ser realizados em todos os Raspberry Pi que irão fazer parte do seu Cluster.<br>
+<br>
+Iremos realizar os comandos pelo terminal e com o usuário <b>Root.</b><br> 
+Digite o seguinte comando para ir como <b>Root</b> -> <b>sudo su</b> e depois a senha do root.>br>
+<br>
+<br>
+Configurando os hostname dos clusters com o seguinte comando:<br>
+<pre><code>hostname master</pre></code>
+<br>
+
+    /*
     <li>Prepare os cartões microSD com o sistema operacional desejado.</li>
     <li>Configure o SSH e conecte-se a cada Raspberry Pi.</li>
-    <li>Atualize os pacotes e defina um hostname exclusivo para cada Pi.</li>
+    <li>Atualize os pacotes e defina um hostname exclusivo para cada Pi.</li>*/
 </ol>
 
 <pre><code>sudo apt-get update && sudo apt-get upgrade -y
