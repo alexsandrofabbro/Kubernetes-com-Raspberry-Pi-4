@@ -177,41 +177,33 @@ spc:
 </ol>
 <pre><code>kubectl apply -f poll-metallb.yaml
 </code></pre>
-
-<h2 id="deploy-de-aplicações">Deploy de Aplicações</h2>
-<p>Exemplo de deploy de uma aplicação simples:</p>
-<pre><code>apiVersion: apps/v1
-kind: Deployment
+<ol start="4">
+    <li>Configurando Advanced L2 Configuration:</li>
+</ol>
+<pre><code>apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
 metadata:
-  name: my-app
+  name: homelab-l2
+  namespace: metallb-system
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: my-app
-  template:
-    metadata:
-      labels:
-        app: my-app
-    spec:
-      containers:
-      - name: my-app
-        image: nginx
-        ports:
-        - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-app-service
-spec:
-  selector:
-    app: my-app
-  ports:
-    - protocol: TCP
-      port: 80
-  type: LoadBalancer
+  ipAddressPools:
+    - ip-pool
 </code></pre>
+<ol start="5">
+    <li>Aplique a configuração Advanced L2 Configuration:</li>
+</ol>
+<pre><code>sudo kubectl apply -f L2Advertisement.yaml
+</code></pre>
+
+<h2 id="deploy-de-aplicações">Configurando Nginx para teste</h2>
+<p>Exemplo de deploy de uma aplicação simples:</p>
+<pre><code>sudo kubectl create deploy nginx –image nginx:latest</code></pre>
+<p>Expondo o Nginx para acessar pelo browser:</p>
+<pre><code>sudo kubectl expose deploy nginx –port 80 --type LoadBalancer</code></pre>
+
+<p>Agora podemos acessar pelo endereço http://192.168.0.101:80 no seu browser</p>
+
+
 
 <h2 id="monitoramento-e-acesso-ao-cluster">Monitoramento e Acesso ao Cluster</h2>
 <ul>
