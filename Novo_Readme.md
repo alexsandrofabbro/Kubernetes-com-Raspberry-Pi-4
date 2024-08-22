@@ -68,11 +68,64 @@
     <br>
     <pre><code>sudo su</pre></code>
     <br>
-    <br>
     Configurando os hostname dos clusters com o seguinte comando:<br>
-    <pre><code>hostname master</pre></code>
+    <br>
+    <pre><code>hostname cluster01</pre></code>
+    <br>
+    Para salvar o nome no arquivo host teremos que executar o comando abaixo:<br>
+    <br>
+    <pre><code><b>echo "cluster01" > /etc/hostname</b></pre></code><br>
+    <br>
+    Se você quiser confirmar se foi alterado o nome, execute esse comando:
+    <pre><code><b>cat /etc/hostname</b></pre></code><br>
+    <br>
+    Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte comando com o nano como o exemplo abaixo:<br>
+    <br>
+    <pre><code><b>nano /etc/hosts</b></pre></code><br>
+    <br>
+    <pre><code>127.0.0.1         localhost<br>
+    <b>192.168.0.201  cluster01</b><br>  
+    ::1 localhost<br>
+    127.0.1.1         pop-os.localdomain pop-os</pre></code><br>
+    <b>Obs.</b> Se for configurar o Kubernetes em desktops, temos que desabilitar o Swap.<br>
+    <br>
+    <br>
+    Como no Raspberry Pi não vem ativado. não iremos executar esse comando:<br>
+    <br>
+    <pre><code><b>swapoff -a</b></pre></code><br>
+    <br>
+    Habilitando a memória que por padrão ela vem desabilitada:<br>
+    <br>
+    <pre><code><b>nano /boot/firmware/cmdline.txt</b></pre></code><br>
+    <br>
+    No final da linha você irá adicionar o seguinte:<br>
+    <br>
+    <pre><code><b>cgroup_enable=cpuset, cgroup_enable=memory, cgroup_memory=1, swapaccount=1</b></pre></code><br>
+    <br>
+    <br>
+    Também temos que instalar o Java e o Docker<br>
+    <br>
+    <br>
+    Vamos criar um arquivo .json<br>
+    Para isso, vamos utilizar o seguinte comando:<br>
+    <br>
+    <pre><code><b>nano /etc/docker/daemon.json</b></pre></code><br>
+    <br>
+    Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
+    <pre><code>
+    {<br>
+       "exec-opts": ["native.cgroupdriver=systemd"],<br>
+       "log-driver": "json-file",<br>
+       "log-opts": {<br>
+             "max-size": "100m"<br>
+         },<br>
+       "storage-driver": "overlay2"<br>
+    }<br>
+    </pre></code>
+    <br>
     <br>
 
+    
     /*
     <li>Prepare os cartões microSD com o sistema operacional desejado.</li>
     <li>Configure o SSH e conecte-se a cada Raspberry Pi.</li>
