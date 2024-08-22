@@ -76,13 +76,13 @@
     <br>
     <pre><code><b>echo "cluster01" > /etc/hostname</b></pre></code><br>
     <br>
-    Se você quiser confirmar se foi alterado o nome, execute esse comando:
+    Se você quiser confirmar se foi alterado o nome, execute esse comando:<br>
+    <br>
     <pre><code><b>cat /etc/hostname</b></pre></code><br>
     <br>
     Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte comando com o nano como o exemplo abaixo:<br>
     <br>
     <pre><code><b>nano /etc/hosts</b></pre></code><br>
-    <br>
     <pre><code>127.0.0.1         localhost<br>
     <b>192.168.0.201  cluster01</b><br>  
     ::1 localhost<br>
@@ -102,9 +102,7 @@
     <br>
     <pre><code><b>cgroup_enable=cpuset, cgroup_enable=memory, cgroup_memory=1, swapaccount=1</b></pre></code><br>
     <br>
-    <br>
     Também temos que instalar o Java e o Docker<br>
-    <br>
     <br>
     Vamos criar um arquivo .json<br>
     Para isso, vamos utilizar o seguinte comando:<br>
@@ -112,6 +110,7 @@
     <pre><code><b>nano /etc/docker/daemon.json</b></pre></code><br>
     <br>
     Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
+    <br>
     <pre><code>
     {<br>
        "exec-opts": ["native.cgroupdriver=systemd"],<br>
@@ -123,19 +122,14 @@
     }<br>
     </pre></code>
     <br>
+    Não podemos esquecer de habilitar uma opção no arquivo <b>sysctl.conf</b>.<br>
     <br>
-
-    
-    /*
-    <li>Prepare os cartões microSD com o sistema operacional desejado.</li>
-    <li>Configure o SSH e conecte-se a cada Raspberry Pi.</li>
-    <li>Atualize os pacotes e defina um hostname exclusivo para cada Pi.</li>*/
+    Para isso vamos executar o seguinte comando:<br>
+    <pre><code><b>nano /etc/sysctl.conf</b></pre></code><br>
+    <br>
+    tem que localizar a linha que está escrito <b>#net.ipv4.ip_forward=1</b> e remover o <b>#</b> 
+    <br>
 </ol>
-
-<pre><code>sudo apt-get update && sudo apt-get upgrade -y
-sudo hostnamectl set-hostname &lt;hostname&gt;
-sudo reboot
-</code></pre>
 
 <h2 id="instalação-do-k3s">Instalação do k3s</h2>
 <ol>
