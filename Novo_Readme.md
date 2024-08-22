@@ -130,12 +130,13 @@
     tem que localizar a linha que está escrito <b>#net.ipv4.ip_forward=1</b> e remover o <b>#</b> 
     <br>
 </ol>
+<br>
 
 <h2 id="instalação-do-k3s">Instalação do k3s</h2>
 <ol>
-    <li>Instale o k3s no nó master:</li>
+    <li>Instale o k3s no nó master com o Flannel:</li>
 </ol>
-<pre><code>curl -sfL https://get.k3s.io | sh -
+<pre><code>curl -sfL https://get.k3s.io | sh -s - --flannel-iface=eth0
 </code></pre>
 <ol start="2">
     <li>Obtenha o token do master para conectar os nós workers:</li>
@@ -157,29 +158,24 @@
 <ol>
     <li>Instale o MetalLB:</li>
 </ol>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/manifests/namespace.yaml
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/manifests/metallb.yaml
+<pre><code>sudo kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.9/config/manifests/metallb-native.yaml
 </code></pre>
 <ol start="2">
     <li>Configure o MetalLB com um intervalo de IPs da sua rede local:</li>
 </ol>
-<pre><code>apiVersion: v1
-kind: ConfigMap
+<pre><code>apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
 metadata:
   namespace: metallb-system
-  name: config
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 192.168.1.240-192.168.1.250
+  name: ip-pool
+spc:
+  address:
+    - 192.168.1.100-192.168.1.110
 </code></pre>
 <ol start="3">
     <li>Aplique a configuração:</li>
 </ol>
-<pre><code>kubectl apply -f metallb-config.yaml
+<pre><code>kubectl apply -f poll-metallb.yaml
 </code></pre>
 
 <h2 id="deploy-de-aplicações">Deploy de Aplicações</h2>
