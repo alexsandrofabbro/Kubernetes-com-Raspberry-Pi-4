@@ -1,6 +1,14 @@
-<h1>Configuração Home Lab com Cluster Kubernetes com k3s, Flannel e MetalLB no Raspberry Pi 4.</h1>
+<h1>Instalação e Configuração do Dashy.</h1>
 
-<p>Este repositório documenta a configuração de um cluster Kubernetes usando Raspberry Pi 4, k3s, Flannel e MetalLB. O objetivo é fornecer um guia passo a passo para configurar um cluster funcional e acessível a partir de outros dispositivos na mesma rede.</p>
+<p>Este repositório documenta a Configuração do Dashy. O objetivo é fornecer um guia passo a passo para configurar Dashy funcional e acessível a partir de outros dispositivos na mesma rede.</p>
+
+<p align="center">
+  <img src="https://github.com/Lissy93/dashy/blob/master/public/web-icons/dashy-logo.png" alt="Dashy Logo" width="150">
+</p>
+
+<p align="center">
+  <strong>Dashy</strong> é um dashboard altamente personalizável, que permite organizar e gerenciar links, serviços e aplicações a partir de uma interface simples e intuitiva.
+</p>
 
 <h2>Índice</h2>
 <ul>
