@@ -21,7 +21,7 @@
 <ul>
     <li>3 Raspberry Pi 4 com pelo menos 2GB de RAM.</li>
     <li>Cartões microSD com pelo menos 16GB.</li>
-    <li>Sistema operacional: Raspberry Pi OS Lite ou Ubuntu Server.</li>
+    <li>Sistema operacional: Ubuntu Server.</li>
     <li>Rede interna com DHCP configurado.</li>
 </ul>
 
