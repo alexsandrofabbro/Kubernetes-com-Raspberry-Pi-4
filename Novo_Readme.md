@@ -5,23 +5,16 @@ Este processo usa a imagem <code>dockurr/windows</code> e permite acessar o Wind
 
 
 <p align="center">
-  <img src="https://github.com/Lissy93/dashy/blob/master/public/web-icons/dashy-logo.png" alt="Dashy Logo" width="150">
+  <img src="https://github.com/alexsandrofabbro/Executando_Windows_via_Docker.../blob/main/Teste_Windows.png" alt="Dockur Windows" width="800">
 </p>
 
 <p align="center">
-  <strong>Dashy</strong> é um dashboard altamente personalizável, que permite organizar e gerenciar links, serviços e aplicações a partir de uma interface simples e intuitiva.
-</p>
+  <strong>Dockur Windows</strong> é o repositório no GitHub onde você encontra mais informações sobre esse assunto.
 
 <h2>Índice</h2>
 <ul>
     <li><a href="#pré-requisitos">Pré-requisitos</a></li>
-    <li><a href="#arquitetura-do-cluster">Arquitetura do Cluster</a></li>
-    <li><a href="#configuração-do-ambiente">Configuração do Ambiente</a></li>
-    <li><a href="#instalação-do-k3s">Instalação do k3s</a></li>
-    <li><a href="#configuração-do-flannel">Configuração do Flannel</a></li>
-    <li><a href="#configuração-do-metallb">Configuração do MetalLB</a></li>
-    <li><a href="#deploy-de-aplicações">Deploy de Aplicações</a></li>
-    <li><a href="#monitoramento-e-acesso-ao-cluster">Monitoramento e Acesso ao Cluster</a></li>
+    <li><a href="#passos_para_configuracao">Passos para Configuração</a></li>
     <li><a href="#recursos-adicionais">Recursos Adicionais</a></li>
     <li><a href="#contribuições">Contribuições</a></li>
     <li><a href="#licença">Licença</a></li>
@@ -29,130 +22,70 @@ Este processo usa a imagem <code>dockurr/windows</code> e permite acessar o Wind
 
 <h2 id="pré-requisitos">Pré-requisitos</h2>
 <ul>
-    <li>3 Raspberry Pi 4 com pelo menos 2GB de RAM.</li>
-    <li>Cartões microSD com pelo menos 16GB.</li>
-    <li>Sistema operacional: Raspberry Pi OS Lite ou Ubuntu Server.</li>
-    <li>Rede interna com DHCP configurado.</li>
+     <li>Docker instalado no sistema (versão mais recente recomendada)</li>
+     <li>Suporte a virtualização habilitado (KVM ou Hyper-V no caso do Windows)</li>
+     <li>Acesso à internet para baixar as imagens necessárias</li>
 </ul>
 
-<h2 id="arquitetura-do-cluster">Arquitetura do Cluster</h2>
+<h2 id="passos_para_configuracao">Passos para Configuração</h2>
 <ul>
-    <li><strong>Master Node:</strong> 1 Raspberry Pi (com k3s server).</li>
-    <li><strong>Worker Nodes:</strong> 2 Raspberry Pi (com k3s agent).</li>
-    <li><strong>Rede:</strong> Flannel como CNI (Container Network Interface).</li>
-    <li><strong>LoadBalancer:</strong> MetalLB configurado em modo Layer 2.</li>
+   <h3>1. Baixar e Configurar o Docker Compose</h3>
+    <p>O primeiro passo é configurar um arquivo <code>docker-compose.yml</code> para o container Windows. 
+       Esse arquivo permite personalizar os recursos alocados para o container, como RAM, CPU e espaço em disco.
+    </p>
+   <h4>Exemplo de <code>docker-compose.yml</code>:</h4>
+   <pre><code>
+      version:"3"
+      services:
+        windows:
+          image: dockurr/windows
+          container_name: windows
+          environment:
+            VERSION: "win10"   <- <b>Versão que deseja usar do Windows.</b>
+            RAM_SIZE: "4G"     <- <b>Quantidade de memoria para o Container do Windows</b>
+            CPU_CORES: "2"     <- <b>Quantidade de Cores que deseja para o Container do Windows.</b>
+            DISK_SIZE: "90GB"  <- <b>O espaço em Disco Local que ele irá utilizar.</b>
+          devices:
+            - /dev/kvm
+          cap_add:
+            - NET_ADMIN
+          ports:
+            - 8006:8006
+            - 3389:3389/tcp
+            - 3389:3389/udp
+          stop_grace_period: 2m
+          volumes:
+            - ./data:/storage
+  </code></pre>
+  <p>Esse exemplo configura o container com as seguintes características:</p>
+  <ul>
+      <li><strong>Versão:</strong> Windows 11</li>
+      <li><strong>Memória RAM:</strong> 4GB</li>
+      <li><strong>CPU:</strong> 2 núcleos</li>
+      <li><strong>Disco:</strong> 64GB</li>
+  </ul>
+  <h3>2. Executar o Docker Compose</h3>
+    <p>Com o arquivo <code>docker-compose.yml</code> configurado, execute o comando para iniciar o container:</p>
+    <pre><code>docker-compose up -d</code></pre>
+    <p>Isso irá baixar a imagem <code>dockurr/windows</code> e iniciar o container conforme as especificações definidas.</p>
+    <h3>3. Acessar o Container Windows</h3>
+    <p>Depois que o container estiver em execução, você pode acessar o Windows de duas formas:</p>
+    <ul>
+        <li>Pelo navegador, acessando <code>http://localhost:8006</code> (usando VNC)</li>
+        <li>Usando RDP, conectando-se ao endereço <code>localhost:3389</code></li>
+    </ul>
+    <h3>4. Personalizar a Configuração</h3>
+    <p>Você pode ajustar as configurações do container modificando as variáveis de ambiente no arquivo <code>docker-compose.yml</code> 
+       para selecionar diferentes versões do Windows (Windows 10, Windows Server) ou ajustar a alocação de recursos, como memória e CPU.
+    </p>  
 </ul>
-
-<h2 id="configuração-do-ambiente">Configuração do Ambiente</h2>
-<ol>
-    Após instalação do Ubuntu Server no cartão de memória, vocês podem estar configurando o IP fixo do Raspberry Pi no
-    arquivo "network-config" como exemplo abaixo:<br>
-    <br>
-    <pre><code>network:<br>
-      version: 2<br>
-    
-      ethernets:<br>
-        eth0:<br>
-           addresses: [192.168.0.201/24]<br>
-           gateway4: 192.168.0.1<br>
-           dhcp4: false<br>
-           optional: true<br>
-           nameservers:<br>
-               addresses: [192.168.0.1, 0.0.0.0]</pre></code><br>
-    <br>
-    Para conectar a esse Raspberry Pi pela rede vou utilizar a conexão por <b>ssh</b>.<br>
-    <br>
-    <b>OBS:</b> Lembrando de conferir se a <b>porta 22</b> e a conexão por <b>autenticação</b> esteja liberada.
-    Vocês podem está verificando isso em <b>/etc/ssh</b> no arquivo <b>ssh_config</b>
-    <br>
-    <br>
-    <br>
-    Após essa configuração, podem inserir o cartão de memória no Raspberry Pi e conectar pelo terminal utilizando o comando <b>ssh</b>.<br>
-    <br>
-    <br>
-    <h2>Preparação dos Raspberry Pis.</h2>
-    <b>Obs:</b> Esses passos têm que ser realizados em todos os Raspberry Pi que irão fazer parte do seu Cluster.<br>
-    <br>
-    Iremos realizar os comandos pelo terminal e com o usuário <b>Root.</b><br> 
-    Digite o seguinte comando para ir como <b>Root</b> e depois a senha do root.<br>
-    <br>
-    <pre><code>sudo su</pre></code>
-    <br>
-    Configurando os hostname dos clusters com o seguinte comando:<br>
-    <br>
-    <pre><code>hostname cluster01</pre></code>
-    <br>
-    Para salvar o nome no arquivo host teremos que executar o comando abaixo:<br>
-    <br>
-    <pre><code><b>echo "cluster01" > /etc/hostname</b></pre></code><br>
-    <br>
-    Se você quiser confirmar se foi alterado o nome, execute esse comando:<br>
-    <br>
-    <pre><code><b>cat /etc/hostname</b></pre></code><br>
-    <br>
-    Adicionar o IP do Raspberry Pi no arquivo hosts, para isso vamos usar o seguinte comando com o nano como o exemplo abaixo:<br>
-    <br>
-    <pre><code><b>nano /etc/hosts</b></pre></code><br>
-    <pre><code>127.0.0.1         localhost<br>
-    <b>192.168.0.201  cluster01</b><br>  
-    ::1 localhost<br>
-    127.0.1.1         pop-os.localdomain pop-os</pre></code><br>
-    <b>Obs.</b> Se for configurar o Kubernetes em desktops, temos que desabilitar o Swap.<br>
-    <br>
-    <br>
-    Como no Raspberry Pi não vem ativado. não iremos executar esse comando:<br>
-    <br>
-    <pre><code><b>swapoff -a</b></pre></code><br>
-    <br>
-    Habilitando a memória que por padrão ela vem desabilitada:<br>
-    <br>
-    <pre><code><b>nano /boot/firmware/cmdline.txt</b></pre></code><br>
-    <br>
-    No final da linha você irá adicionar o seguinte:<br>
-    <br>
-    <pre><code><b>cgroup_enable=cpuset, cgroup_enable=memory, cgroup_memory=1, swapaccount=1</b></pre></code><br>
-    <br>
-    Também temos que instalar o Java e o Docker<br>
-    <br>
-    Vamos criar um arquivo .json<br>
-    Para isso, vamos utilizar o seguinte comando:<br>
-    <br>
-    <pre><code><b>nano /etc/docker/daemon.json</b></pre></code><br>
-    <br>
-    Ele é um arquivo novo e vamos digitar os seguintes comandos:<br>
-    <br>
-    <pre><code>
-    {<br>
-       "exec-opts": ["native.cgroupdriver=systemd"],<br>
-       "log-driver": "json-file",<br>
-       "log-opts": {<br>
-             "max-size": "100m"<br>
-         },<br>
-       "storage-driver": "overlay2"<br>
-    }<br>
-    </pre></code>
-    <br>
-    Não podemos esquecer de habilitar uma opção no arquivo <b>sysctl.conf</b>.<br>
-    <br>
-    Para isso vamos executar o seguinte comando:<br>
-    <pre><code><b>nano /etc/sysctl.conf</b></pre></code><br>
-    <br>
-    tem que localizar a linha que está escrito <b>#net.ipv4.ip_forward=1</b> e remover o <b>#</b> 
-    <br>
-</ol>
-<br>
-
-<h2 id="monitoramento-e-acesso-ao-cluster">Monitoramento e Acesso ao Cluster</h2>
-<ul>
-    <li>Acesse suas aplicações pelo IP atribuído pelo MetalLB.</li>
-    <li>Use <code>kubectl</code> para monitorar o estado do cluster e dos pods.</li>
-</ul>
-
+<h2>Finalizando o Container</h2>
+    <p>Para parar e remover o container, use os seguintes comandos:</p>
+    <pre><code>docker-compose down</code></pre>
 <h2 id="recursos-adicionais">Recursos Adicionais</h2>
 <ul>
-    <li><a href="https://k3s.io/">Documentação oficial do k3s</a></li>
-    <li><a href="https://github.com/flannel-io/flannel">Flannel</a></li>
-    <li><a href="https://metallb.universe.tf/">MetalLB</a></li>
+  <li><a href="https://github.com/dockurr/windows" target="_blank">Repositório Dockurr/Windows</a></li>
+  <li><a href="https://docs.docker.com/" target="_blank">Documentação do Docker</a></li>
 </ul>
 
 <h2 id="contribuições">Contribuições</h2>
