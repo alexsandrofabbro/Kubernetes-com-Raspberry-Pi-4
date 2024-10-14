@@ -1,6 +1,8 @@
-<h1>Instalação e Configuração do Dashy.</h1>
+<h1>Executando Windows via Docker...</h1>
 
-<p>Este repositório documenta a Configuração do Dashy. O objetivo é fornecer um guia passo a passo para configurar Dashy funcional e acessível a partir de outros dispositivos na mesma rede.</p>
+<p>Este guia descreve como configurar e executar uma versão do Windows, como Windows 10 ou 11, dentro de um container Docker. 
+Este processo usa a imagem <code>dockurr/windows</code> e permite acessar o Windows por meio de um navegador ou RDP (Remote Desktop Protocol).</p>
+
 
 <p align="center">
   <img src="https://github.com/Lissy93/dashy/blob/master/public/web-icons/dashy-logo.png" alt="Dashy Logo" width="150">
